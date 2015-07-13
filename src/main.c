@@ -38,103 +38,78 @@ static void get_date() {
   int month = date->tm_mon;
   char day[] = "31";
   
-  int str_end = 0;
-  
   // Get current date
   strftime(day, sizeof("31"), "%d", date);
   
   switch (day_of_week) {
     case 0:
-      strncat(full_date, "SUN, ", 5);
-      str_end += 5;
+      strcat(full_date, "SUN, ");
       break;
     case 1:
-      strncat(full_date, "MON, ", 5);
-      str_end += 5;
+      strcat(full_date, "MON, ");
       break;
     case 2:
-      strncat(full_date, "TUES, ", 6);
-      str_end += 6;
+      strcat(full_date, "TUES, ");
       break;
     case 3:
-      strncat(full_date, "WED, ", 5);
-      str_end += 5;
+      strcat(full_date, "WED, ");
       break;
     case 4:
-      strncat(full_date, "THURS, ", 7);
-      str_end += 7;
+      strcat(full_date, "THURS, ");
       break;
     case 5:
-      strncat(full_date, "FRI, ", 5);
-      str_end += 5;
+      strcat(full_date, "FRI, ");
       break;
     case 6:
-      strncat(full_date, "SAT, ", 5);
-      str_end += 5;
+      strcat(full_date, "SAT, ");
       break;
   }
   
   switch (month) {
     case 0:
-      strncat(full_date, "JAN ", 4);
-      str_end += 4;
+      strcat(full_date, "JAN ");
       break;
     case 1:
-      strncat(full_date, "FEB ", 4);
-      str_end += 4;
+      strcat(full_date, "FEB ");
       break;
     case 2:
-      strncat(full_date, "MAR ", 4);
-      str_end += 4;
+      strcat(full_date, "MAR ");
       break;
     case 3:
-      strncat(full_date, "APR ", 4);
-      str_end += 4;
+      strcat(full_date, "APR ");
       break;
     case 4:
-      strncat(full_date, "MAY ", 4);
-      str_end += 4;
+      strcat(full_date, "MAY ");
       break;
     case 5:
-      strncat(full_date, "JUNE ", 5);
-      str_end += 5;
+      strcat(full_date, "JUNE ");
       break;
     case 6:
-      strncat(full_date, "JULY ", 5);
-      str_end += 5;
+      strcat(full_date, "JULY ");
       break;
     case 7:
-      strncat(full_date, "AUG ", 4);
-      str_end += 4;
+      strcat(full_date, "AUG ");
       break;
     case 8:
-      strncat(full_date, "SEPT ", 5);
-      str_end += 5;
+      strcat(full_date, "SEPT ");
       break;
     case 9:
-      strncat(full_date, "OCT ", 4);
-      str_end += 4;
+      strcat(full_date, "OCT ");
       break;
     case 10:
-      strncat(full_date, "NOV ", 4);
-      str_end += 4;
+      strcat(full_date, "NOV ");
       break;
     case 11:
-      strncat(full_date, "DEC ", 4);
-      str_end += 4;
+      strcat(full_date, "DEC ");
       break;
   }
   
   if (day[0] == '0') {
-    full_date[str_end] = day[1];
-    str_end += 1;
+    strcat(full_date, &day[1]);
   }
   else {
-    strncat(full_date, day, 2);
-    str_end += 2;
+    strcat(full_date, day);
   }
-  
-  full_date[str_end] = '\0';
 
   // Display this date on the TextLayer
   text_layer_set_text(date_layer, full_date);
