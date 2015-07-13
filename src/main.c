@@ -6,6 +6,7 @@ static Layer *light_layer, *dark_layer;
 static GFont time_font;
 static PropertyAnimation *property_animation_light, *property_animation_dark;
 static Animation *animation_light, *animation_dark, *layer_slide;
+static int day_of_week;
 
 static void update_time() {
   // Get a tm structure
@@ -28,15 +29,17 @@ static void update_time() {
   text_layer_set_text(time_layer, buffer);
 }
 
-static void get_date() {
+static void update_date() {
   // Get a tm structure
   time_t temp = time(NULL); 
   struct tm *date = localtime(&temp);
   
   static char full_date[16];
-  int day_of_week = date->tm_wday;
+  day_of_week = date->tm_wday;
   int month = date->tm_mon;
   char day[] = "31";
+  
+  full_date[0] = '\0';
   
   // Get current date
   strftime(day, sizeof("31"), "%d", date);
@@ -117,6 +120,10 @@ static void get_date() {
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
+  
+  if (tick_time->tm_wday != day_of_week) {
+    update_date();
+  }
 }
 
 static void draw_light_layer(Layer *layer, GContext *ctx) {
@@ -230,7 +237,7 @@ static void init() {
   update_time();
   
   // Make sure the date is displayed from the start
-  get_date();
+  update_date();
   
   // Register with TickTimerService
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
