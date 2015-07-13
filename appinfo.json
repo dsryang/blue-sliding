@@ -1,0 +1,34 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "David Yang",
+    "longName": "Blue Sliding",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/Blue Sliding Icon.png",
+                "menuIcon": true,
+                "name": "MENU_ICON",
+                "type": "png"
+            },
+            {
+                "file": "fonts/Lato-Bold.ttf",
+                "name": "FONT_LATO_BOLD_46",
+                "type": "font"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Blue Sliding",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "2d337f71-081b-4782-bb46-021040ae1563",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
