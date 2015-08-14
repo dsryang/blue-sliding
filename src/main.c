@@ -143,9 +143,6 @@ static void draw_dark_layer(Layer *layer, GContext *ctx) {
 }
 
 static void animations(int16_t window_width, int16_t window_height) {
-  //int16_t window_width = 144;
-  //int16_t window_height = 168;
-
   // Slide from left animation for light background layer
   GRect light_start = GRect(-window_width, 0, 0, window_height);
   GRect light_end = GRect(0, 0, window_width, window_height);
